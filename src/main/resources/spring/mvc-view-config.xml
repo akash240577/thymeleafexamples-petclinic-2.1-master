@@ -75,6 +75,7 @@
             <map>
                 <entry key="html" value="text/html" />
                 <entry key="xml" value="application/xml" />
+                <entry key="json" value="application/json" />
                 <entry key="atom" value="application/atom+xml" />
             </map>
         </property>
@@ -86,6 +87,11 @@
     <!-- Renders an XML view. Used by the BeanNameViewResolver  -->
     <bean name="vets/vetList.xml" class="org.springframework.web.servlet.view.xml.MarshallingView">
         <property name="marshaller" ref="marshaller"/>
+    </bean>
+    
+    <!--  Renders a JSON view -->
+    <bean name ="vets/vetList.json" class = "org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+    	
     </bean>
 
     <oxm:jaxb2-marshaller id="marshaller">

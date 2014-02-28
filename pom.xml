@@ -30,7 +30,8 @@
 		<javax-el.version>2.2</javax-el.version>
 		<jaxb-api.version>2.2.7</jaxb-api.version>
 		<jaxb-impl.version>2.2.7-b53</jaxb-impl.version>
-
+		<jackson.version>2.0.4</jackson.version>
+	
 		<!-- Hibernate / JPA -->
 		<hibernate.version>4.1.9.Final</hibernate.version>
 		<hibernate-jpa.version>1.0.1.Final</hibernate-jpa.version>
@@ -108,6 +109,18 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>${jaxb-impl.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSON view -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- THYMELEAF -->
@@ -475,7 +488,7 @@
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<version>7.1.1.Final</version>
 				<configuration>
-				
+
 					<force>true</force>
 					<hostname>${jboss-as.deploy.hostname}</hostname>
 					<username>${jboss-as.deploy.user}</username>
