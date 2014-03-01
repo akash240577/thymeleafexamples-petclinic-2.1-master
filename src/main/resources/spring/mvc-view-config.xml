@@ -38,7 +38,7 @@
         <property name="viewResolvers">
         	<list>
             
-                <!-- Used here for 'xml' and 'atom' views  -->
+                <!-- Used here for 'xml' 'JSON' and 'atom' views  -->
                 <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
                     <property name="order" value="1"/>
                 </bean>

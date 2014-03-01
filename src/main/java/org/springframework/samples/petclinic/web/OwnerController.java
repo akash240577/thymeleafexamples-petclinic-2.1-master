@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @author Juergen Hoeller
@@ -65,12 +66,16 @@ public class OwnerController {
     }
 
     @RequestMapping(value = "/owners/new", method = RequestMethod.POST)
-    public String processCreationForm(@Valid Owner owner, BindingResult result, SessionStatus status) {
+    public String processCreationForm(@Valid Owner owner, BindingResult result, SessionStatus status,
+                                      final RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "owners/createOrUpdateOwnerForm";
         } else {
             this.clinicService.saveOwner(owner);
             status.setComplete();
+            redirectAttributes.addFlashAttribute("owner", owner);
+            redirectAttributes.addFlashAttribute("message", "Successfully Added...");
+
             return "redirect:/owners/" + owner.getId();
         }
     }

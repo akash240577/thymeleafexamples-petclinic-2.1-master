@@ -22,6 +22,12 @@
 </head>
 
 <body>
+<div th:if="${message}!=null">
+    <h1>
+        <span th:text="${message}"></span>
+    </h1>
+    <span th:text="|${owner.firstName} ${owner.lastName} successfully added...|"></span>
+</div>
 <div class="container">
     <div th:include="fragments/bodyHeader" th:remove="tag">
     

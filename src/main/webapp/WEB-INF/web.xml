@@ -5,7 +5,7 @@
                              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
-    <display-name>Spring PetClinic + Thymeleaf</display-name>
+    <display-name>Spring PetClinic + ThymeleafApp</display-name>
     <description>Spring PetClinic + Thymeleaf sample application</description>
 
     <context-param>
