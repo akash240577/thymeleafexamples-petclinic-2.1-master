@@ -23,6 +23,7 @@ import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.security.access.annotation.Secured;
 
 
 /**
@@ -44,6 +45,7 @@ public interface ClinicService {
 
     public Collection<Vet> findVets() throws DataAccessException;
 
+    @Secured("ROLE_ADMIN")
     public void saveOwner(Owner owner) throws DataAccessException;
 
     Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
