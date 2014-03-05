@@ -72,7 +72,7 @@ public class OwnerController {
             return "owners/createOrUpdateOwnerForm";
         } else {
             this.clinicService.saveOwner(owner);
-            status.setComplete();
+                status.setComplete();
             redirectAttributes.addFlashAttribute("owner", owner);
             redirectAttributes.addFlashAttribute("message", "Successfully Added...");
 
