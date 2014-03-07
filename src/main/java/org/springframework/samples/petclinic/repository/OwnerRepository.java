@@ -35,6 +35,7 @@ import java.util.Collection;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Repository class for <code>Owner</code> domain objects All method names are compliant with Spring Data naming
@@ -74,6 +75,7 @@ public interface OwnerRepository {
      * @param owner the <code>Owner</code> to save
      * @see BaseEntity#isNew
      */
+    @Transactional
     void save(Owner owner) throws DataAccessException;
 
 
