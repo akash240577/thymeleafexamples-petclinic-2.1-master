@@ -57,7 +57,6 @@ public class Visit extends BaseEntity {
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
-
     /**
      * Creates a new instance of Visit for the current date
      */

@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -64,7 +65,11 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration("classpath:spring/security-config.xml")
+@ContextConfiguration(
+        {"classpath:spring/security-config.xml",
+                "classpath:spring/business-config.xml",
+                "classpath:spring/mvc-core-config.xml"})
+@ActiveProfiles("jpa")
 public class SpringSecurityTests {
 
     private static String SEC_CONTEXT_ATTR = HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
@@ -87,7 +92,7 @@ public class SpringSecurityTests {
     public void requiresAuthentication() throws Exception {
         ResultActions actions = mockMvc.perform(get("/"));
         actions.andDo(print());
-        actions.andExpect(redirectedUrl("http://localhost/spring_security_login"));
+        actions.andExpect(redirectedUrl("http://localhost/login"));
     }
 
     /*@Test
@@ -111,14 +116,16 @@ public class SpringSecurityTests {
                 post("/j_spring_security_check")
                         .param("j_username", username).param("j_password", password));
         actions.andDo(print());
-        actions.andExpect(redirectedUrl("/"))
-                .andExpect(new ResultMatcher() {
-                    public void match(MvcResult mvcResult) throws Exception {
-                        HttpSession session = mvcResult.getRequest().getSession();
-                        SecurityContext securityContext = (SecurityContext) session.getAttribute(SEC_CONTEXT_ATTR);
-                        Assert.assertEquals(securityContext.getAuthentication().getName(), username);
-                    }
-                });
+        actions.andExpect(status().isMovedTemporarily());
+
+        actions.andExpect(new ResultMatcher() {
+            public void match(MvcResult mvcResult) throws Exception {
+                HttpSession session = mvcResult.getRequest().getSession();
+                SecurityContext securityContext = (SecurityContext) session.getAttribute(SEC_CONTEXT_ATTR);
+                Assert.assertEquals(securityContext.getAuthentication().getName(), username);
+            }
+        });
+        actions.andExpect(redirectedUrl("/"));
     }
 
     @Test
@@ -133,6 +140,14 @@ public class SpringSecurityTests {
                         Assert.assertNull(securityContext);
                     }
                 });
+    }
+
+    @Test
+    public void logout() throws Exception{
+        userAuthenticates();
+        ResultActions actions = mockMvc.perform(get("/logout"));
+        actions.andDo(print());
+        actions.andExpect(redirectedUrl("/login?logged-out"));
     }
 
 }
