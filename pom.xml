@@ -81,7 +81,10 @@
 		<jboss-as.deploy.user>akash</jboss-as.deploy.user>
 		<jboss-as.deploy.pass>Pa55word</jboss-as.deploy.pass>
 
+        <!-- PDF View -->
         <itext-version>5.4.2</itext-version>
+        <!-- Excel View -->
+        <poi-version>3.9</poi-version>
 	</properties>
 
 	<dependencies>
@@ -401,6 +404,18 @@
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
             <version>${itext-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi-version}</version>
         </dependency>
 
     </dependencies>

@@ -97,10 +97,13 @@
     </bean>
     
     <!--  Renders a JSON view -->
-    <bean name ="vets/vetList.json" class = "org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+    <bean name ="vets/vetList.json" class = "org.springframework.web.servlet.view.json.MappingJackson2JsonView" lazy-init="true"/>
 
     <!--  Renders a PDF view -->
-    <bean name ="vets/vetList.pdf" class = "org.springframework.samples.petclinic.web.VetPDFView"/>
+    <bean name ="vets/vetList.pdf" class = "org.springframework.samples.petclinic.web.VetPDFView" lazy-init="true"/>
+
+    <!--  Renders an Excel view -->
+    <bean name ="vets/vetList.xlsx" class = "org.springframework.samples.petclinic.web.VetExcelView" lazy-init="true"/>
 
     <oxm:jaxb2-marshaller id="marshaller">
         <!-- Object-XML mapping declared using annotations inside 'Vets' -->

@@ -33,7 +33,7 @@ public class VetPDFView extends AbstractPdfView {
             HttpServletResponse resp)
             throws Exception {
 
-        // Get data "articles" from model
+        // Get data "vets" from model
         @SuppressWarnings("unchecked")
         Vets vets = (Vets) model.get("vets");
         List<Vet> vetList = vets.getVetList();
@@ -43,7 +43,7 @@ public class VetPDFView extends AbstractPdfView {
 
         for (Vet vet : vetList) {
 
-            // 1.Title
+            // 1.Name
             document.add(new Chunk("Name: "));
             Chunk title = new Chunk(vet.getFirstName() + " " + vet.getLastName(), fontTitle);
             document.add(title);
