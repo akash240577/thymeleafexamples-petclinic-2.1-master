@@ -81,6 +81,7 @@
 		<jboss-as.deploy.user>akash</jboss-as.deploy.user>
 		<jboss-as.deploy.pass>Pa55word</jboss-as.deploy.pass>
 
+        <itext-version>5.4.2</itext-version>
 	</properties>
 
 	<dependencies>
@@ -396,7 +397,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>${itext-version}</version>
+        </dependency>
+
+    </dependencies>
 
 	<!-- all Maven plugin versions are mentioned in order to guarantee the build 
 		reproducibility in the long term -->

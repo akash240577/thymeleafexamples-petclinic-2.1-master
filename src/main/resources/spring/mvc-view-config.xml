@@ -81,6 +81,8 @@
                 <entry key="html" value="text/html" />
                 <entry key="xml" value="application/xml" />
                 <entry key="json" value="application/json" />
+                <entry key="pdf" value="application/pdf" />
+                <entry key="xlsx" value="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
                 <entry key="atom" value="application/atom+xml" />
             </map>
         </property>
@@ -95,9 +97,10 @@
     </bean>
     
     <!--  Renders a JSON view -->
-    <bean name ="vets/vetList.json" class = "org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-    	
-    </bean>
+    <bean name ="vets/vetList.json" class = "org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+
+    <!--  Renders a PDF view -->
+    <bean name ="vets/vetList.pdf" class = "org.springframework.samples.petclinic.web.VetPDFView"/>
 
     <oxm:jaxb2-marshaller id="marshaller">
         <!-- Object-XML mapping declared using annotations inside 'Vets' -->
